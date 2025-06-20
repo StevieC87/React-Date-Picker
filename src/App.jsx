@@ -27,6 +27,7 @@ function App() {
             dateprop={(multiple === 'yes' || multiple === 'range') ? selecteddatesMulti : selecteddate} 
             multipleprop={multiple} format="DDMMYYYY"
             displaya=""
+            weekstartssunday={true}
 
           />
     </>
