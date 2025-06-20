@@ -118,6 +118,7 @@ function App() {
         multipleprop={multiple}
         format="DDMMYYYY"
         displaya=""
+        weekstartssunday={false}
       />
     </>
   );
