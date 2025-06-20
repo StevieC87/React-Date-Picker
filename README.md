@@ -66,6 +66,8 @@ Set the date format (`DDMMYYYY`, `MMDDYYYY`, or `YYYYMMDD`). This is what will b
 
 Nota bene: Dates in state are always stored as `yyyy-mm-dd`.
 
+You can set it the week to start on Sunday or Monday by setting true/false to this prop: weekstartssunday={false} Or weekstartssunday={true}
+
 ```jsx
 <Datepicker
   onDateChange={handleDateChange}
@@ -77,6 +79,7 @@ Nota bene: Dates in state are always stored as `yyyy-mm-dd`.
   multipleprop={multiple}
   format="DDMMYYYY"
   displaya=""
+  weekstartssunday={false}
 />
 ```
 
