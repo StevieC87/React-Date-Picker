@@ -79,6 +79,7 @@ Nota bene: Dates in state are always stored as `yyyy-mm-dd`.
   displaya=""
 />
 ```
+---
 
 ## 7. Complete Example
 ```jsx
