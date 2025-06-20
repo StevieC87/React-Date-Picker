@@ -191,7 +191,8 @@ export function makearrayofdatesfromWeek(
   weeknumber: string,
   year: string,
   monthnumber: string,
-  monthname: string
+  monthname: string,
+  weekstartssunday: boolean = false
 ): any[] {
   console.log(weeknumber, "weeknumber333");
   console.log(year, "year333");
@@ -215,12 +216,22 @@ export function makearrayofdatesfromWeek(
   const firstdayofweek = getDateFromWeekNumber(yearinno, weeknumber1);
 
   console.log(firstdayofweek.toDateString()); // Outputs the date of the first day of the given week number
+  console.log("firstdayofweek", firstdayofweek);
 
   //for loop
   for (let i = 1; i < 8; i++) {
     let currentday1 = new Date(firstdayofweek);
     //add days to firstdayofweek
-    let currentday = currentday1.setDate(firstdayofweek.getDate() + i);
+    //DEDUCT ONE DAY HERE
+    //let currentday = currentday1.setDate(firstdayofweek.getDate() + i - 1);
+    let currentday;
+    //IF American style
+    if (weekstartssunday) {
+      currentday = currentday1.setDate(firstdayofweek.getDate() + i - 1);
+    } else {
+      currentday = currentday1.setDate(firstdayofweek.getDate() + i);
+    }
+
     let currentdayclean = new Date(currentday);
 
     //to yyyy-mm-dd

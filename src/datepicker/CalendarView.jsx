@@ -13,7 +13,8 @@ export default function CalendarView({
   closedialog,
   multipleprop,
   actuallytoday,
-  format
+  format,
+  weekstartssunday
 }) {
 
   const onclickdate = (e, day) => {
@@ -47,15 +48,24 @@ export default function CalendarView({
     }
   };
 
+  const weekarray = (weekstartssunday) => {
+    if( weekstartssunday) {
+      return ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    }
+    else {
+      return ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    }
+  }
+
   return (
     <div className="mydatepickergrid">
-      <div className="dayofweek">Mon</div>
-      <div className="dayofweek">Tue</div>
-      <div className="dayofweek">Wed</div>
-      <div className="dayofweek">Thu</div>
-      <div className="dayofweek">Fr</div>
-      <div className="dayofweek">Sat</div>
-      <div className="dayofweek">Sun</div>
+      {weekarray(weekstartssunday).map((day, index) => (
+        <div key={index} className="dayofweek">
+          {day}
+
+        </div>
+      ))}
+   
       {allweeksdates && allweeksdates.map((day, index) => (
         //! allweeksdates is in default system format yyyy-mm-dd
         <div

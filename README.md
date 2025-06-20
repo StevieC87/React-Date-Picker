@@ -89,7 +89,6 @@ import { useState } from "react";
 import "./App.css";
 import Datepicker from "./datepicker/Datepicker.jsx";
 import "./datepicker/Datepicker.css";
-import "./scss/styles.scss";
 
 function App() {
   const [multiple, setMultiple] = useState("range"); // "yes" or "range" for multiple selection, empty string for single date

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import {
   getmonthnumber, getmonthname, daysinmonth2, getdayofweek, getdayname, getWeeksInMonth, makearrayofdatesfromWeek, convertYMD2DMY, convertDMY2YMD, convertDMY2YMDarray, convertMDY2YMDarray,
-  
+  convertFromSystemFormattodesiredformat
  } from './daypickerjs';
 import Topdiv from './Topdiv';
 import MonthsView from './Monthsview';
@@ -24,7 +24,8 @@ export default function Dialog(props) {
     closedialog,
     multipleprop,
     actuallytoday,
-    format
+    format,
+    weekstartssunday
   } = props;
 
   const dialogref = useRef();
@@ -123,6 +124,7 @@ export default function Dialog(props) {
             multipleprop={multipleprop}
             actuallytoday={actuallytoday}
             format={format}
+            weekstartssunday={weekstartssunday}
           />
         )}
         {showmonth && !showyears && (

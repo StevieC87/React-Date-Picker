@@ -13,7 +13,7 @@ const Datepicker = React.forwardRef((props, ref) => {
   const [selectedateArray, setSelecteddateArray] = useState([]);
   //this is for initial 
   const [selectedRANGEArray, setSelectedRANGEArray] = useState([]);
-  const { dateprop, onDateChange, closedialogCallback, multipleprop, format } = props;
+  const { dateprop, onDateChange, closedialogCallback, multipleprop, format, weekstartssunday } = props;
   const [isOpen, setIsOpen] = useState(false);
   const dateinputref = useRef();
   //const dialogref = useRef();
@@ -307,6 +307,7 @@ const Datepicker = React.forwardRef((props, ref) => {
             multipleprop={multipleprop}
             actuallytoday={actuallytoday}
             format={format}
+            weekstartssunday={weekstartssunday}
           />
         )}
       </div>
