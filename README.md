@@ -66,7 +66,7 @@ Set the date format (`DDMMYYYY`, `MMDDYYYY`, or `YYYYMMDD`). This is what will b
 
 Nota bene: Dates in state are always stored as `yyyy-mm-dd`.
 
-````jsx
+```jsx
 <Datepicker
   onDateChange={handleDateChange}
   dateprop={
@@ -79,9 +79,11 @@ Nota bene: Dates in state are always stored as `yyyy-mm-dd`.
   displaya=""
 />
 ```
+
 ---
 
 ## 7. Complete Example
+
 ```jsx
 import { useState } from "react";
 import "./App.css";
@@ -120,4 +122,4 @@ function App() {
 }
 
 export default App;
-````
+```
