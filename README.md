@@ -66,7 +66,7 @@ Set the date format (`DDMMYYYY`, `MMDDYYYY`, or `YYYYMMDD`). This is what will b
 
 Nota bene: Dates in state are always stored as `yyyy-mm-dd`.
 
-```jsx
+````jsx
 <Datepicker
   onDateChange={handleDateChange}
   dateprop={
@@ -78,4 +78,44 @@ Nota bene: Dates in state are always stored as `yyyy-mm-dd`.
   format="DDMMYYYY"
   displaya=""
 />
-```
+
+## 7. Complete Example
+```jsx
+import { useState } from "react";
+import "./App.css";
+import Datepicker from "./datepicker/Datepicker.jsx";
+import "./datepicker/Datepicker.css";
+import "./scss/styles.scss";
+
+function App() {
+  const [multiple, setMultiple] = useState("range"); // "yes" or "range" for multiple selection, empty string for single date
+  const [selecteddate, setSelecteddate] = useState("");
+  const [selecteddatesMulti, setSelecteddatesMulti] = useState([]);
+
+  const handleDateChange = (newdate) => {
+    if (typeof newdate === "object") {
+      setSelecteddatesMulti(newdate);
+    } else {
+      setSelecteddate(newdate);
+    }
+  };
+
+  return (
+    <>
+      <Datepicker
+        onDateChange={handleDateChange}
+        dateprop={
+          multiple === "yes" || multiple === "range"
+            ? selecteddatesMulti
+            : selecteddate
+        }
+        multipleprop={multiple}
+        format="DDMMYYYY"
+        displaya=""
+      />
+    </>
+  );
+}
+
+export default App;
+````
