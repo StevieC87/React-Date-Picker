@@ -25,7 +25,11 @@ export default function Dialog(props) {
     multipleprop,
     actuallytoday,
     format,
-    weekstartssunday
+    weekstartssunday,
+    rangestartDate,
+    rangeendDate,
+    setRangestartDate,
+    setRangeendDate
   } = props;
 
   const dialogref = useRef();
@@ -125,6 +129,10 @@ export default function Dialog(props) {
             actuallytoday={actuallytoday}
             format={format}
             weekstartssunday={weekstartssunday}
+            rangestartDate={rangestartDate}
+            rangeendDate={rangeendDate}
+            setRangestartDate={setRangestartDate}
+            setRangeendDate={setRangeendDate}
           />
         )}
         {showmonth && !showyears && (

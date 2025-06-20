@@ -156,18 +156,25 @@ const Datepicker = React.forwardRef((props, ref) => {
 
   //, ============= RANGE PICKER ==================
 
+  const [rangestartDate, setRangestartDate] = useState('');
+  const [rangeendDate, setRangeendDate] = useState('');
   //.THIS FOR RANGE PICKER
   useEffect(() => {
     if (selectedRANGEArray.length === 2) {
       let firstdate = selectedRANGEArray[0];
+    
       let enddate = selectedRANGEArray[1];
-
+    
+     
       let geteverydaybetween = (startDate, endDate) => {
         let start = new Date(startDate);
         let end = new Date(endDate);
         let dateArray = [];
         let currentDate = start;
        if( start < end) {
+       
+        setRangestartDate(firstdate);
+        setRangeendDate(enddate);
           while (currentDate <= end) {
             dateArray.push(currentDate.toISOString().slice(0, 10)); // Format as YYYY-MM-DD
             currentDate.setDate(currentDate.getDate() + 1);
@@ -175,6 +182,8 @@ const Datepicker = React.forwardRef((props, ref) => {
           return dateArray;
         }
          else if (start > end) {
+          setRangestartDate(enddate);
+          setRangeendDate(firstdate); 
           while (currentDate >= end) {
             dateArray.push(currentDate.toISOString().slice(0, 10)); // Format as YYYY-MM-DD
             currentDate.setDate(currentDate.getDate() - 1);
@@ -268,7 +277,7 @@ const Datepicker = React.forwardRef((props, ref) => {
     <>
       {/* THIS IS THE INPUT FIELD  */}
       <div className="datepickerwrapper" >
-        {selecteddate2}
+        
         <div className="datepickerformgroupdiv" onClick={() => setIsOpen(true)}>
           <input
             /* ref={dateinputref} */
@@ -312,6 +321,10 @@ const Datepicker = React.forwardRef((props, ref) => {
             actuallytoday={actuallytoday}
             format={format}
             weekstartssunday={weekstartssunday}
+            rangestartDate={rangestartDate}
+            rangeendDate={rangeendDate}
+            setRangestartDate={setRangestartDate}
+            setRangeendDate={setRangeendDate}
           />
         )}
       </div>
