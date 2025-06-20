@@ -1,0 +1,221 @@
+.datepickerinput {
+  display: block;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--bs-body-color);
+  appearance: none;
+  background-color: var(--bs-body-bg);
+  background-clip: padding-box;
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+  border: 1px solid #ced4da;
+}
+
+.datepickerinput:active {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+}
+.datepickerinput:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+  outline: 0;
+}
+
+.mydaypickerwrapper {
+  height: 200px;
+  width: 300px;
+  border: 1px solid black;
+}
+
+.mydatepickergrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border: 0px solid black;
+  text-align: center;
+}
+
+.grey {
+  color: lightgrey;
+}
+
+.redlabel {
+  color: red;
+}
+
+.dayofweek {
+  font-weight: 500;
+  padding: 0px;
+  color: black;
+}
+
+.dialog {
+  border: 0px solid gray;
+  padding: 0;
+  width: 300px;
+  position: absolute;
+}
+
+.datepickerwrapper {
+  position: relative;
+  width: 300px;
+}
+
+.todaycss {
+  border: 1px solid lightblue;
+}
+
+.filterbadge {
+  color: gray !important;
+  border: 1px solid gray !important;
+}
+
+.weektopbanner {
+  display: flex;
+  justify-content: space-between;
+}
+
+.activedatebadge {
+  color: #212529;
+
+  display: inline-block;
+  /*  padding: .25em 0em; */
+
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  border: 1px solid #ff0606;
+  margin: 3px 9px 2px 9px;
+}
+.topdivdp {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 5px;
+}
+.chevronsdp {
+  width: 30px;
+  height: 30px;
+  font-size: 24px;
+  cursor: pointer;
+}
+.chevrondpleft {
+  text-align: left;
+}
+.chevrondpright {
+  text-align: right;
+}
+
+.monthnamedp {
+  font-weight: bold;
+}
+.dpdatebox {
+}
+.dpdatebox:hover {
+  background-color: lightgrey;
+  cursor: pointer;
+}
+
+.inputicon {
+  position: absolute;
+  right: 10px; /* Adjust the position as needed */
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.datepinput {
+  padding-right: 30px;
+}
+.datepickerformgroupdiv {
+  position: relative;
+  display: inline-block;
+  display: flex;
+  flex-direction: row;
+}
+
+.monthsdiv {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.monthdiv {
+}
+
+.yeardiv {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, auto); /* Define 4 rows */
+}
+.monthdiv {
+  text-align: center;
+  padding: 5px;
+  cursor: pointer;
+}
+.monthdiv:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1;
+} /* January */
+.monthdiv:nth-child(2) {
+  grid-column: 1;
+  grid-row: 2;
+} /* February */
+.monthdiv:nth-child(3) {
+  grid-column: 1;
+  grid-row: 3;
+} /* March */
+.monthdiv:nth-child(4) {
+  grid-column: 1;
+  grid-row: 4;
+} /* April */
+.monthdiv:nth-child(5) {
+  grid-column: 2;
+  grid-row: 1;
+} /* May */
+.monthdiv:nth-child(6) {
+  grid-column: 2;
+  grid-row: 2;
+} /* June */
+.monthdiv:nth-child(7) {
+  grid-column: 2;
+  grid-row: 3;
+} /* July */
+.monthdiv:nth-child(8) {
+  grid-column: 2;
+  grid-row: 4;
+} /* August */
+.monthdiv:nth-child(9) {
+  grid-column: 3;
+  grid-row: 1;
+} /* September */
+.monthdiv:nth-child(10) {
+  grid-column: 3;
+  grid-row: 2;
+} /* October */
+.monthdiv:nth-child(11) {
+  grid-column: 3;
+  grid-row: 3;
+} /* November */
+.monthdiv:nth-child(12) {
+  grid-column: 3;
+  grid-row: 4;
+} /* December */
+
+.activeyear {
+  font-weight: bold;
+}
+
+.curserpointer {
+  cursor: pointer;
+}
+
+.bi-calendar4-week::before {
+  background-color: white;
+}
