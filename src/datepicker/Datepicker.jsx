@@ -169,30 +169,12 @@ const Datepicker = React.forwardRef((props, ref) => {
         let currentDate = start;
 
         while (currentDate <= end) {
-<<<<<<< HEAD
 
           // let datemodded = currentDate.toISOString().slice(0, 10);
           //  console.log(datemodded, 'datemoddeddatemoddeddatemoddeddatemodded')
           dateArray.push(currentDate.toISOString().slice(0, 10)); // Format as YYYY-MM-DD
 
 
-=======
-          //convert to mm-dd
-          console.log(currentDate, 'currentDatecurrentDatecurrentDatecurrentDate')
-          if (format === 'DDMMYYYY') {
-
-            dateArray.push(convertYMD2DMY(currentDate.toISOString().slice(0, 10))); // Format as DD-MM-YYYY
-          }
-          else if (format === 'MMDDYYYY') {
-            dateArray.push(convertYMD2MDY(currentDate.toISOString().slice(0, 10))); // Format as MM-DD-YYYY
-          }
-          else if (format === 'YYYYMMDD') {
-            // let datemodded = currentDate.toISOString().slice(0, 10);
-            //  console.log(datemodded, 'datemoddeddatemoddeddatemoddeddatemodded')
-            dateArray.push(currentDate.toISOString().slice(0, 10)); // Format as YYYY-MM-DD
-
-          }
->>>>>>> 9b6f64bea8143b15ccce47b5eb3d53fb63685b23
           currentDate.setDate(currentDate.getDate() + 1);
         }
         return dateArray;
@@ -309,7 +291,6 @@ const Datepicker = React.forwardRef((props, ref) => {
         </div>
         {/* THIS IS THE DIALOG  */}
         {isOpen && (
-<<<<<<< HEAD
           <Dialog
             monthfordisplay={monthfordisplay}
             setMonthfordisplay={setMonthfordisplay}
@@ -327,172 +308,6 @@ const Datepicker = React.forwardRef((props, ref) => {
             actuallytoday={actuallytoday}
             format={format}
           />
-=======
-          <div className="dialog" ref={dialogref}  >   {/*  ref={ref} */}
-            {/*  <button onClick={() => setIsOpen(false)} autoFocus>Close</button> */}
-
-            {/*  dateprop={datepropDatepicker} */}
-            <div className="mydaypickerwrapper"   >
-              <div className="topdivdp">
-
-                {!showyears && (<div className="chevronsdp chevrondpleft" onClick={() => changemonth(monthfordisplay, 'previous', yearfordisplay)}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-left" viewBox="0 0 16 16">
-                    <path fillRule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0" />
-                  </svg>
-                </div>
-                )}
-                {showyears && (<div className="chevronsdp chevrondpleft" onClick={() => changeyearfunction('minus')}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-left" viewBox="0 0 16 16">
-                    <path fillRule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0" />
-                  </svg>
-                </div>
-                )}
-                <div className="monthnamedp" >
-                  <span className="curserpointer" onClick={() => changesetshowmonth()}>{monthname} </span>
-                  <span className="curserpointer" onClick={() => showyearsfunction()}>  {yearfordisplay}  </span>
-                </div>
-
-                {!showyears && (
-                  <div className="chevronsdp chevrondpright" onClick={() => changemonth(monthfordisplay, 'next', yearfordisplay)}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-right" viewBox="0 0 16 16">
-                      <path fillRule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
-                    </svg>
-                  </div>
-                )}
-                {showyears && (<div className="chevronsdp chevrondpleft" onClick={() => changeyearfunction('plus', yearfordisplay)}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-right" viewBox="0 0 16 16">
-                    <path fillRule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
-                  </svg>
-                </div>
-                )}
-
-
-              </div>
-              {!showmonth && !showyears && (
-                <div className="mydatepickergrid">
-                  <div className="dayofweek">Mon</div>
-                  <div className="dayofweek">Tue</div>
-                  <div className="dayofweek">Wed</div>
-                  <div className="dayofweek">Thu</div>
-                  <div className="dayofweek">Fr</div>
-                  <div className="dayofweek">Sat</div>
-                  <div className="dayofweek">Sun</div>
-
-                  {allweeksdates && allweeksdates.map((day, index) => (
-                    <div
-                      key={day.datetxt}
-                      onClick={() => {
-                        console.log(allweeksdates, 'allweeksdates123123')
-                        if (multipleprop === 'yes') {
-                          //alert('clicked')
-                          //first check if it exists in the array already
-                          if (selectedateArray.find(item => item == day.datetxt)) {
-                            //   alert('exists')
-                            //remove it
-                            console.log('exists')
-                            let newarray = multipledatearray.filter(item => item !== day.datetxt);
-                            //    setMultipledatearray(newarray);
-                            setSelecteddateArray(newarray);
-                            changeDateCallback(newarray);
-                          }
-
-                          else {
-                            console.log('multiple')
-                            console.log(typeof day.datetxt, 'day.datetxt typeof')
-                            console.log(day.datetxt, 'day.datetxtsssssss')
-
-                            //convert array 
-                            // let convertedArrayformat = convertFormatArray(multipledatearray);
-                            //  console.log(convertedArrayformat, 'convertedArrayformat')
-
-                            //  setMultipledatearray([...multipledatearray, convertFormat(day.datetxt)]);
-                            setSelecteddateArray([...selectedateArray, convertFormat(day.datetxt)]);
-                            changeDateCallback([...selectedateArray, convertFormat(day.datetxt)]);
-                            changedateLocal(convertFormat(day.datetxt));
-
-                          }
-                        }
-                        else if (multipleprop === 'range') {
-                          // alert(day.datetxt)
-                          //  selectedRANGEArray, setSelectedRANGEArray
-
-                          if (selectedRANGEArray.length < 2) {
-                            //clear arrauy
-                            setSelectedRANGEArray([...selectedRANGEArray, day.datetxt]);
-                          }
-                          else if (selectedRANGEArray.length >= 2) {
-                            //clear arrauy
-                            setSelectedRANGEArray([]);
-                            setSelectedRANGEArray([day.datetxt]);
-                            //NEED A USE EFFECT HERE 
-                          }
-                          //      setSelectedRANGEArray([day.datetxt]);
-                        }
-                        else {
-                          changeDateCallback(day.datetxt);
-                          closedialog(false);
-                          changedateLocal(day.datetxt);
-                        }
-                      }}
-
-
-                      className={
-                        `dpdatebox 
-                        ${day.monthname !== monthname ? 'grey' : ''} 
-                        ${selecteddate2 === convertFormat(day.datetxt) ? 'activedatebadge' : ''} 
-                        ${day.datetxt === actuallytoday ? 'todaycss' : ''} 
-                        ${selectedRANGEArray && selectedRANGEArray.find(item => item === day.datetxt) ? 'activedatebadge' : ''}
-                        
-                        ${selectedateArray &&
-                          selectedateArray.find(item => item == convertFormat(day.datetxt)) ? 'activedatebadge' : ''} `}
-
-                      data-date={convertFormat(day.datetxt)} data-monthname={day.monthname} data-monthnumber={day.monthnumber} /* data-dayname={day.dayname} data-dayofweek={day.dayofweek} data-dayofweeknumber={day.dayofweeknumber} data-year={day.year} data-day={day.day} data-month={day.month} */
-                    /*   tabIndex={0} */
-                    /*   onKeyDown={(event) => handleKeyDown(event, index)}
-            */
-                    >
-                      {day.datetxt.split('-')[2]}
-
-                    </div>
-                  ))}
-
-                </div>
-              )}
-              {showmonth && !showyears && (
-                <div className="monthsdiv">
-                  <div className="monthdiv curserpointer" id="1" onClick={(event) => { event.stopPropagation(); changemonthclick(1) }}>January</div>
-                  <div className="monthdiv curserpointer" id="2" onClick={(event) => { event.stopPropagation(); changemonthclick(2) }}>February</div>
-                  <div className="monthdiv curserpointer" id="3" onClick={(event) => { event.stopPropagation(); changemonthclick(3) }}>March</div>
-                  <div className="monthdiv curserpointer" id="4" onClick={(event) => { event.stopPropagation(); changemonthclick(4) }}>April</div>
-                  <div className="monthdiv curserpointer" id="5" onClick={(event) => { event.stopPropagation(); changemonthclick(5) }}>May</div>
-                  <div className="monthdiv curserpointer" id="6" onClick={(event) => { event.stopPropagation(); changemonthclick(6) }}>June</div>
-                  <div className="monthdiv curserpointer" id="7" onClick={(event) => { event.stopPropagation(); changemonthclick(7) }}>July</div>
-                  <div className="monthdiv curserpointer" id="8" onClick={(event) => { event.stopPropagation(); changemonthclick(8) }}>August</div>
-                  <div className="monthdiv curserpointer" id="9" onClick={(event) => { event.stopPropagation(); changemonthclick(9) }}>September</div>
-                  <div className="monthdiv curserpointer" id="10" onClick={(event) => { event.stopPropagation(); changemonthclick(10) }}>October</div>
-                  <div className="monthdiv curserpointer" id="11" onClick={(event) => { event.stopPropagation(); changemonthclick(11) }}>November</div>
-                  <div className="monthdiv curserpointer" id="12" onClick={(event) => { event.stopPropagation(); changemonthclick(12) }}>December</div>
-
-                </div>
-              )
-              }
-              {showyears && !showmonth && (
-
-                <div className='yeardiv'>
-                  {yearsArray && yearsArray.map((year, index) => (
-
-                    <div key={index} className={`yeardivitem ${year === yearfordisplay ? 'activeyear' : ''}`}
-                      /*   onClick={() => selectnewyearfunction(year)} */
-                      onClick={(event) => { event.stopPropagation(); selectnewyearfunction(year) }}
-                    > <span className="curserpointer"> {year} </span></div>
-                  ))}
-
-                </div>
-              )}
-
-            </div>
-          </div>
->>>>>>> 9b6f64bea8143b15ccce47b5eb3d53fb63685b23
         )}
       </div>
     </>
@@ -501,7 +316,3 @@ const Datepicker = React.forwardRef((props, ref) => {
 
 Datepicker.displayName = 'Mydaypicker2';
 export default Datepicker;
-<<<<<<< HEAD
-=======
-/*   onClick={() => dispatch(setDateFordaypicker(day.datetxt))} */
->>>>>>> 9b6f64bea8143b15ccce47b5eb3d53fb63685b23
