@@ -50,7 +50,7 @@ export default function CalendarView({
         setSelectedRANGEArray([...selectedRANGEArray, day]);
       } else if (selectedRANGEArray.length >= 2) {
      /*   setSelectedRANGEArray([]); */
-        setRangestartDate('')
+        setRangestartDate(day)
         setRangeendDate('')
          setSelecteddateArray([]);
         
