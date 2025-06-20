@@ -6,7 +6,7 @@ import './scss/styles.scss';
 function App() {
 
 
-  const [multiple, setMultiple] = useState('range'); //yes or range for range or  empty string for single date selection
+  const [multiple, setMultiple] = useState('yes'); //yes or range for range or  empty string for single date selection
   const [selecteddate, setSelecteddate] = useState('');
   const [selecteddatesMulti, setSelecteddatesMulti] = useState([]);
 
@@ -30,11 +30,12 @@ function App() {
 
   return (
     <>
-      <Datepicker onDateChange={handleDateChange}
-        dateprop={multiple == 'yes' ? selecteddatesMulti : selecteddate}
-        multiple={multiple} /* format="MMDDYYYY" */ format="DDMMYYYY"
-        displaya=""
-      />
+       <Datepicker onDateChange={handleDateChange}
+            dateprop={(multiple === 'yes' || multiple === 'range') ? selecteddatesMulti : selecteddate} 
+            multipleprop={multiple} format="DDMMYYYY"
+            displaya=""
+
+          />
     </>
 
     /* display: modal or popup default*/
