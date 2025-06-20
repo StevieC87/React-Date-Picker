@@ -167,17 +167,21 @@ const Datepicker = React.forwardRef((props, ref) => {
         let end = new Date(endDate);
         let dateArray = [];
         let currentDate = start;
-
-        while (currentDate <= end) {
-
-          // let datemodded = currentDate.toISOString().slice(0, 10);
-          //  console.log(datemodded, 'datemoddeddatemoddeddatemoddeddatemodded')
-          dateArray.push(currentDate.toISOString().slice(0, 10)); // Format as YYYY-MM-DD
-
-
-          currentDate.setDate(currentDate.getDate() + 1);
+       if( start < end) {
+          while (currentDate <= end) {
+            dateArray.push(currentDate.toISOString().slice(0, 10)); // Format as YYYY-MM-DD
+            currentDate.setDate(currentDate.getDate() + 1);
+          }
+          return dateArray;
         }
-        return dateArray;
+         else if (start > end) {
+          while (currentDate >= end) {
+            dateArray.push(currentDate.toISOString().slice(0, 10)); // Format as YYYY-MM-DD
+            currentDate.setDate(currentDate.getDate() - 1);
+          }
+             return dateArray;
+        } 
+     
       }
       let alldatesbetween = geteverydaybetween(firstdate, enddate);
       console.log(alldatesbetween, 'alldatesbetween')
@@ -185,7 +189,7 @@ const Datepicker = React.forwardRef((props, ref) => {
       onDateChange(alldatesbetween);
 
     }
-
+    
   }, [selectedRANGEArray])
 
 

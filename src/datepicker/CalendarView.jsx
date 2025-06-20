@@ -36,7 +36,7 @@ export default function CalendarView({
         console.log('multiple');
         setSelecteddateArray([...selectedateArray, day]);
         onDateChange([...selectedateArray, day]);
-        setSelecteddate2(day); // i think this is just to show currently selected date in the daylong maybe - not sure
+       //  setSelecteddate2(day); // i think this is just to show currently selected date in the daylong maybe - not sure
       }
     } else if (multipleprop === 'range') {
       if (selectedRANGEArray.length < 2) {
@@ -75,6 +75,7 @@ export default function CalendarView({
           className={
             `dpdatebox 
          ${day.monthname !== monthname ? 'grey' : ''} 
+  
          ${selecteddate2 === day.datetxt ? 'activedatebadge' : ''} 
          ${day.datetxt === actuallytoday ? 'todaycss' : ''} 
          ${selectedRANGEArray && selectedRANGEArray.find(item => item === day.datetxt) ? 'activedatebadge' : ''}
