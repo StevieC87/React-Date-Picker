@@ -6,7 +6,7 @@ import './scss/styles.scss';
 function App() {
 
 
-  const [multiple, setMultiple] = useState('yes'); //yes or range for range or  empty string for single date selection
+  const [multiple, setMultiple] = useState('range'); //yes or range for range or  empty string for single date selection
   const [selecteddate, setSelecteddate] = useState('');
   const [selecteddatesMulti, setSelecteddatesMulti] = useState([]);
 
