@@ -162,35 +162,38 @@ const Datepicker = React.forwardRef((props, ref) => {
   useEffect(() => {
     if (selectedRANGEArray.length === 2) {
       let firstdate = selectedRANGEArray[0];
-    
+
       let enddate = selectedRANGEArray[1];
-    
-     
+
+
       let geteverydaybetween = (startDate, endDate) => {
         let start = new Date(startDate);
         let end = new Date(endDate);
         let dateArray = [];
         let currentDate = start;
-       if( start < end) {
-       
-        setRangestartDate(firstdate);
-        setRangeendDate(enddate);
+        if (start < end) {
+
+          setRangestartDate(firstdate);
+          setRangeendDate(enddate);
           while (currentDate <= end) {
             dateArray.push(currentDate.toISOString().slice(0, 10)); // Format as YYYY-MM-DD
             currentDate.setDate(currentDate.getDate() + 1);
           }
           return dateArray;
         }
-         else if (start > end) {
+        else if (start > end) {
           setRangestartDate(enddate);
-          setRangeendDate(firstdate); 
+          setRangeendDate(firstdate);
           while (currentDate >= end) {
             dateArray.push(currentDate.toISOString().slice(0, 10)); // Format as YYYY-MM-DD
             currentDate.setDate(currentDate.getDate() - 1);
+
+            //sort array by date old to new
+            dateArray.sort((a, b) => new Date(a) - new Date(b));
           }
-             return dateArray;
-        } 
-     
+          return dateArray;
+        }
+
       }
       let alldatesbetween = geteverydaybetween(firstdate, enddate);
       console.log(alldatesbetween, 'alldatesbetween')
@@ -198,7 +201,7 @@ const Datepicker = React.forwardRef((props, ref) => {
       onDateChange(alldatesbetween);
 
     }
-    
+
   }, [selectedRANGEArray])
 
 
@@ -277,7 +280,7 @@ const Datepicker = React.forwardRef((props, ref) => {
     <>
       {/* THIS IS THE INPUT FIELD  */}
       <div className="datepickerwrapper" >
-        
+
         <div className="datepickerformgroupdiv" onClick={() => setIsOpen(true)}>
           <input
             /* ref={dateinputref} */
