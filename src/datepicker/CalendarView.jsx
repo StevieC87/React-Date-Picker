@@ -18,7 +18,8 @@ export default function CalendarView({
   rangestartDate,
   rangeendDate,
   setRangestartDate,
-  setRangeendDate
+  setRangeendDate,
+  setRangesingledayselected
 }) {
 
   const onclickdate = (e, day) => {
@@ -40,28 +41,33 @@ export default function CalendarView({
         console.log('multiple');
         setSelecteddateArray([...selectedateArray, day]);
         onDateChange([...selectedateArray, day]);
-       //  setSelecteddate2(day); // i think this is just to show currently selected date in the daylong maybe - not sure
+        //  setSelecteddate2(day); // i think this is just to show currently selected date in the daylong maybe - not sure
       }
     } else if (multipleprop === 'range') {
       if (selectedRANGEArray.length === 0) {
         setRangestartDate(day)
       }
       if (selectedRANGEArray.length < 2) {
+        let getcurrentdate = selectedRANGEArray[0];
+        if (day === getcurrentdate) {
+          //  setRangesingledayselected(true);
+          setRangestartDate(day)
+          setRangeendDate(day);
+          setSelectedRANGEArray([day]);
+        }
         setSelectedRANGEArray([...selectedRANGEArray, day]);
       } else if (selectedRANGEArray.length >= 2) {
-     /*   setSelectedRANGEArray([]); */
+        /*   setSelectedRANGEArray([]); */
         setRangestartDate(day)
         setRangeendDate('')
-         setSelecteddateArray([]);
-        
-
+        setSelecteddateArray([]);
         setSelectedRANGEArray([day]);
       }
     }
   };
 
   const weekarray = (weekstartssunday) => {
-    if( weekstartssunday) {
+    if (weekstartssunday) {
       return ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     }
     else {
@@ -77,7 +83,7 @@ export default function CalendarView({
 
         </div>
       ))}
-   
+
       {allweeksdates && allweeksdates.map((day, index) => (
         //! allweeksdates is in default system format yyyy-mm-dd
         <div
@@ -96,7 +102,7 @@ export default function CalendarView({
         ${day.datetxt === rangestartDate ? 'rangestart' : ''}
         ${day.datetxt === rangeendDate ? 'rangeend' : ''}
         
-        `}> 
+        `}>
           {day.datetxt.split('-')[2]}
         </div>
       ))}

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import {
   getmonthnumber, getmonthname, daysinmonth2, getdayofweek, getdayname, getWeeksInMonth, makearrayofdatesfromWeek, convertYMD2DMY, convertDMY2YMD, convertDMY2YMDarray, convertMDY2YMDarray,
   convertFromSystemFormattodesiredformat
- } from './daypickerjs';
+} from './daypickerjs';
 import Topdiv from './Topdiv';
 import MonthsView from './Monthsview';
 import YearView from './YearView';
@@ -29,7 +29,8 @@ export default function Dialog(props) {
     rangestartDate,
     rangeendDate,
     setRangestartDate,
-    setRangeendDate
+    setRangeendDate,
+    setRangesingledayselected
   } = props;
 
   const dialogref = useRef();
@@ -133,6 +134,7 @@ export default function Dialog(props) {
             rangeendDate={rangeendDate}
             setRangestartDate={setRangestartDate}
             setRangeendDate={setRangeendDate}
+            setRangesingledayselected={setRangesingledayselected}
           />
         )}
         {showmonth && !showyears && (

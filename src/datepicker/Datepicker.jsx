@@ -36,6 +36,8 @@ const Datepicker = React.forwardRef((props, ref) => {
 
   const [actuallytoday, setActuallytoday] = useState('');
 
+  const [rangesingledayselected, setRangesingledayselected] = useState(false);
+
   //. SET TODAY useeffect ---------------------------
   useEffect(() => {
     let todaydatex = new Date(); //example: 2021-05-05T10:00:00.000Z
@@ -93,24 +95,7 @@ const Datepicker = React.forwardRef((props, ref) => {
       if (selecteddate2) {
         console.log('selecteddate2HEREHERE', selecteddate2)
 
-        //! DATE IS ALWAYS SYSTEM FORMAT YYYY-MM-DD
-        /* let unformatdate = '';
-        if (format === 'DDMMYYYY') {
-          console.log('HEREYO')
-          unformatdate = convertDMY2YMD(selecteddate2)
-          console.log(unformatdate, 'unformatdate')
-        }
-        else if (format === 'YYYYMMDD') {
-          unformatdate = selecteddate2;
 
-        }
-        else if (format === 'MMDDYYYY') {
-          // alert('here')
-          unformatdate = convertMDY2YMD(selecteddate2);
-          console.log(unformatdate, 'unformatdate2')
-        }
-
-        datetouse = unformatdate; */
         datetouse = selecteddate2
       }
       else if (!selecteddate2) {
@@ -160,83 +145,62 @@ const Datepicker = React.forwardRef((props, ref) => {
   const [rangeendDate, setRangeendDate] = useState('');
   //.THIS FOR RANGE PICKER
   useEffect(() => {
+    if (selectedRANGEArray.length === 1) {
+
+
+    }
     if (selectedRANGEArray.length === 2) {
       let firstdate = selectedRANGEArray[0];
 
       let enddate = selectedRANGEArray[1];
 
+      if (firstdate === enddate) {
 
-      let geteverydaybetween = (startDate, endDate) => {
-        let start = new Date(startDate);
-        let end = new Date(endDate);
-        let dateArray = [];
-        let currentDate = start;
-        if (start < end) {
-
-          setRangestartDate(firstdate);
-          setRangeendDate(enddate);
-          while (currentDate <= end) {
-            dateArray.push(currentDate.toISOString().slice(0, 10)); // Format as YYYY-MM-DD
-            currentDate.setDate(currentDate.getDate() + 1);
-          }
-          return dateArray;
-        }
-        else if (start > end) {
-          setRangestartDate(enddate);
-          setRangeendDate(firstdate);
-          while (currentDate >= end) {
-            dateArray.push(currentDate.toISOString().slice(0, 10)); // Format as YYYY-MM-DD
-            currentDate.setDate(currentDate.getDate() - 1);
-
-            //sort array by date old to new
-            dateArray.sort((a, b) => new Date(a) - new Date(b));
-          }
-          return dateArray;
-        }
+        setSelecteddateArray([firstdate, enddate]);
+        onDateChange([firstdate]);
 
       }
-      let alldatesbetween = geteverydaybetween(firstdate, enddate);
-      console.log(alldatesbetween, 'alldatesbetween')
-      setSelecteddateArray(alldatesbetween);
-      onDateChange(alldatesbetween);
+      else {
 
+        let geteverydaybetween = (startDate, endDate) => {
+          let start = new Date(startDate);
+          let end = new Date(endDate);
+          let dateArray = [];
+          let currentDate = start;
+          if (start < end) {
+
+            setRangestartDate(firstdate);
+            setRangeendDate(enddate);
+            while (currentDate <= end) {
+              dateArray.push(currentDate.toISOString().slice(0, 10)); // Format as YYYY-MM-DD
+              currentDate.setDate(currentDate.getDate() + 1);
+            }
+            return dateArray;
+          }
+          else if (start > end) {
+            setRangestartDate(enddate);
+            setRangeendDate(firstdate);
+            while (currentDate >= end) {
+              dateArray.push(currentDate.toISOString().slice(0, 10)); // Format as YYYY-MM-DD
+              currentDate.setDate(currentDate.getDate() - 1);
+
+              //sort array by date old to new
+              dateArray.sort((a, b) => new Date(a) - new Date(b));
+            }
+            return dateArray;
+          }
+
+        }
+        let alldatesbetween = geteverydaybetween(firstdate, enddate);
+        console.log(alldatesbetween, 'alldatesbetween')
+        setSelecteddateArray(alldatesbetween);
+        onDateChange(alldatesbetween);
+      }
     }
 
   }, [selectedRANGEArray])
 
 
-
-
-  /*
-  
-    const onchangeinput = (e) => {
-      let proceed = false;
-      if (selectedateArray && selectedateArray.length > 0) {
-        //validate dates before setting them - OTHERWISE BUGGY if date not finished
-        //alert('arry changed')
-  
-          proceed = true;
-         let valueinput = dateinputref.current.value;
-         let valueinputarray = valueinput.split(',');
-         console.log(valueinputarray, 'valueinputarray')
-         //back to string with the comma 
-   
-         console.log(valueinput, 'valueinput')
-         // setSelecteddateArray([valueinput]);
-         setSelecteddateArray(valueinputarray);
-         //  setMultipledatearray(valueinputarray);
-    
-  
-      }
-      else {
-        let validdateis = validatedate(e.target.value)
-        console.log(validdateis, 'validdateis')
-        proceed = true;
-        setSelecteddate2(e.target.value);
-      }
-    } */
-
-  //| -----------------------------------------------------------
 
   const selectedarrayformattedforuserpreferences = (datesarray) => {
     let formatit = datesarray.map(date => {
@@ -262,18 +226,40 @@ const Datepicker = React.forwardRef((props, ref) => {
       }
 
     }
-    else if (multipleprop === 'range') {
+    else if (multipleprop === 'range')
       if (selectedateArray && selectedateArray.length > 0) {
-        /*    let formattearray = selectedarrayformattedforuserpreferences(selectedateArray);
-           console.log(formattearray, 'formattearray')
-           return formattearray.join(','); */
         let getfirstdate = selectedateArray[0];
         let getlastdate = selectedateArray[selectedateArray.length - 1];
         let formattedfirstdate = convertFromSystemFormattodesiredformat(format, getfirstdate);
         let formattedlastdate = convertFromSystemFormattodesiredformat(format, getlastdate);
-        return `${formattedfirstdate} - ${formattedlastdate}`;
+
+        if (selectedateArray.length === 1) {
+          let formattedfirstdate = convertFromSystemFormattodesiredformat(format, selectedateArray[0]);
+
+          console.log(formattedfirstdate, 'formattedfirstdate')
+          console.log(formattedlastdate, 'formattedlastdate')
+
+          return formattedfirstdate;
+        }
+        else {
+
+          console.log(formattedfirstdate, 'formattedfirstdate1')
+          console.log(formattedlastdate, 'formattedlastdate2')
+          console.log(selectedateArray, 'formattedselectedateArray')
+          return `${formattedfirstdate} - ${formattedlastdate}`;
+        }
+        /* else if (selectedateArray[0] === selectedateArray[1]) {
+        //   alert('single day selected');
+        let formattedfirstdate = convertFromSystemFormattodesiredformat(format, selectedateArray[0]);
+        let formattedlastdate = convertFromSystemFormattodesiredformat(format, selectedateArray[1]);
+        console.log(formattedfirstdate, 'formattedfirstdate')
+        console.log(formattedlastdate, 'formattedlastdate')
+
+        return formattedfirstdate;
+      } */
       }
-    }
+
+
   }
 
   return (
@@ -328,6 +314,7 @@ const Datepicker = React.forwardRef((props, ref) => {
             rangeendDate={rangeendDate}
             setRangestartDate={setRangestartDate}
             setRangeendDate={setRangeendDate}
+            setRangesingledayselected={setRangesingledayselected}
           />
         )}
       </div>
